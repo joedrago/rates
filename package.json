@@ -1,0 +1,22 @@
+{
+    "name": "gacha-sim",
+    "version": "1.0.0",
+    "type": "module",
+    "scripts": {
+        "start": "node sim.mjs",
+        "format": "prettier --write \"**/*.{js,mjs,cjs,json}\" --ignore-path .gitignore \"!.claude\"",
+        "lint": "eslint \"**/*.{js,mjs,cjs}\""
+    },
+    "prettier": {
+        "printWidth": 130,
+        "tabWidth": 4,
+        "trailingComma": "none",
+        "semi": false
+    },
+    "devDependencies": {
+        "prettier": "^3",
+        "eslint": "^9",
+        "@eslint/js": "^9",
+        "globals": "^16"
+    }
+}
