@@ -125,6 +125,28 @@ function loadBanner(path) {
         }
     }
 
+    // Validate pity config if present
+    if (banner.pity) {
+        if (!Array.isArray(banner.pity.items) || banner.pity.items.length === 0 || typeof banner.pity.pulls !== "number") {
+            console.error("Pity config must have 'items' (array of names) and 'pulls' (number).")
+            process.exit(1)
+        }
+        banner.pity.reset = !!banner.pity.reset
+        banner.pity.strategy = banner.pity.strategy || "fewest"
+        if (!["fewest", "random"].includes(banner.pity.strategy)) {
+            console.error(`Unknown pity strategy "${banner.pity.strategy}". Must be "fewest" or "random".`)
+            process.exit(1)
+        }
+        banner.pity.indices = banner.pity.items.map((name) => {
+            const idx = banner.items.findIndex((it) => it.name === name)
+            if (idx === -1) {
+                console.error(`Pity item "${name}" not found in banner items.`)
+                process.exit(1)
+            }
+            return idx
+        })
+    }
+
     // Validate that rates sum close to 100%.
     // Game UI truncates at 5 decimal places, so each item can be off by up to 0.000005%.
     const maxDecimals = banner.items.reduce((max, it) => {
@@ -210,6 +232,20 @@ function rollOnTable({ table, resolution }) {
         }
     }
     return table[lo].idx
+}
+
+function pickPityItem(pity, tracker) {
+    if (pity.indices.length === 1) return pity.indices[0]
+    if (pity.strategy === "random") {
+        return pity.indices[Math.floor(Math.random() * pity.indices.length)]
+    }
+    // "fewest": pick the item with the lowest count, ties broken randomly
+    let minCount = Infinity
+    for (const idx of pity.indices) {
+        if (tracker[idx].count < minCount) minCount = tracker[idx].count
+    }
+    const tied = pity.indices.filter((idx) => tracker[idx].count === minCount)
+    return tied[Math.floor(Math.random() * tied.length)]
 }
 
 // ── End Condition Checking ───────────────────────────────────────────────────
@@ -355,12 +391,14 @@ function conditionProgress(cond, items, tracker, totalPulls) {
 function createAggregator(items) {
     return {
         pullsPerRun: [],
+        pityGrantsPerRun: [],
         items: items.map(() => ({ counts: [], firstSeens: [] }))
     }
 }
 
-function recordRun(agg, tracker, totalPulls) {
+function recordRun(agg, tracker, totalPulls, pityGrants) {
     agg.pullsPerRun.push(totalPulls)
+    agg.pityGrantsPerRun.push(pityGrants)
     for (let i = 0; i < tracker.length; i++) {
         agg.items[i].counts.push(tracker[i].count)
         agg.items[i].firstSeens.push(tracker[i].firstSeen)
@@ -396,11 +434,12 @@ function prepareReportData(banner, items, agg, conditions, numRuns) {
         }
     })
 
-    return { rows, pullStats: summarize(agg.pullsPerRun) }
+    const pityStats = agg.pityGrantsPerRun.some((v) => v > 0) ? summarize(agg.pityGrantsPerRun) : null
+    return { rows, pullStats: summarize(agg.pullsPerRun), pityStats }
 }
 
 function writeMarkdown(outPath, banner, items, agg, conditions, numRuns, title) {
-    const { rows, pullStats } = prepareReportData(banner, items, agg, conditions, numRuns)
+    const { rows, pullStats, pityStats } = prepareReportData(banner, items, agg, conditions, numRuns)
 
     const runsLabel = numRuns === 1 ? "1 Run" : `${numRuns.toLocaleString()} Runs`
     const heading = title ? `**${title}** — ${runsLabel}` : `${banner.name} — ${runsLabel}`
@@ -411,6 +450,12 @@ function writeMarkdown(outPath, banner, items, agg, conditions, numRuns, title) 
 
     if (conditions.length > 0) {
         md += `**End Conditions:** ${conditions.map(describeCondition).join("; ")}  \n`
+    }
+
+    if (pityStats) {
+        const pityNames = banner.pity.items.join(", ")
+        const pityStrategy = banner.pity.items.length > 1 ? `, strategy: ${banner.pity.strategy}` : ""
+        md += `**Pity:** ${pityNames} (every **${banner.pity.pulls}** pulls${banner.pity.reset ? ", resets on pull" : ""}${pityStrategy}) — min **${pityStats.min.toLocaleString()}** / avg **${pityStats.avg.toFixed(1)}** / max **${pityStats.max.toLocaleString()}** grants per run  \n`
     }
 
     md += `\n## Results per Item\n\n`
@@ -429,7 +474,7 @@ function writeMarkdown(outPath, banner, items, agg, conditions, numRuns, title) 
 }
 
 function writeHtml(outPath, banner, items, agg, conditions, numRuns, title) {
-    const { rows, pullStats } = prepareReportData(banner, items, agg, conditions, numRuns)
+    const { rows, pullStats, pityStats } = prepareReportData(banner, items, agg, conditions, numRuns)
 
     const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
     const runsLabel = numRuns === 1 ? "1 Run" : `${numRuns.toLocaleString()} Runs`
@@ -460,6 +505,14 @@ function writeHtml(outPath, banner, items, agg, conditions, numRuns, title) {
 
     const conditionsHtml =
         conditions.length > 0 ? `<p><strong>End Conditions:</strong> ${esc(conditions.map(describeCondition).join("; "))}</p>` : ""
+
+    const pityHtml = pityStats
+        ? (() => {
+            const pityNames = esc(banner.pity.items.join(", "))
+            const pityStrategy = banner.pity.items.length > 1 ? `, strategy: ${banner.pity.strategy}` : ""
+            return `<p><strong>Pity:</strong> ${pityNames} (every <strong>${banner.pity.pulls}</strong> pulls${banner.pity.reset ? ", resets on pull" : ""}${pityStrategy}) — min <strong>${pityStats.min.toLocaleString()}</strong> / avg <strong>${pityStats.avg.toFixed(1)}</strong> / max <strong>${pityStats.max.toLocaleString()}</strong> grants per run</p>`
+        })()
+        : ""
 
     const html = `<!DOCTYPE html>
 <html lang="en">
@@ -530,6 +583,7 @@ function writeHtml(outPath, banner, items, agg, conditions, numRuns, title) {
         <p><strong>Date:</strong> ${new Date().toISOString().slice(0, 10)}</p>
         <p><strong>Pulls per Run:</strong> min <strong>${pullStats.min.toLocaleString()}</strong> / avg <strong>${Math.round(pullStats.avg).toLocaleString()}</strong> / max <strong>${pullStats.max.toLocaleString()}</strong></p>
         ${conditionsHtml}
+        ${pityHtml}
     </div>
     <div class="table-wrap">
         <table id="results">
@@ -611,10 +665,13 @@ for (const cond of conditions) {
 const lootTable = buildLootTable(items)
 console.log(`Loot table resolution: ${lootTable.resolution.toLocaleString()} (${lootTable.table.length} slots)`)
 
+const pity = banner.pity || null
 const agg = createAggregator(items)
 let currentRun = 1
 let tracker = items.map(() => ({ count: 0, firstSeen: null }))
 let totalPulls = 0
+let pityCounter = 0
+let pityGrants = 0
 let stopped = false
 let triggeredCondition = null
 const startTime = Date.now()
@@ -624,7 +681,7 @@ process.on("SIGINT", () => {
 })
 
 function finishRun() {
-    recordRun(agg, tracker, totalPulls)
+    recordRun(agg, tracker, totalPulls, pityGrants)
 }
 
 function finishAll() {
@@ -645,6 +702,8 @@ function finishAll() {
 function resetRun() {
     tracker = items.map(() => ({ count: 0, firstSeen: null }))
     totalPulls = 0
+    pityCounter = 0
+    pityGrants = 0
     triggeredCondition = null
 }
 
@@ -652,8 +711,21 @@ function resetRun() {
 function runChunk() {
     const chunkEnd = Date.now() + 100
     while (!stopped && Date.now() < chunkEnd) {
-        const idx = rollOnTable(lootTable)
+        let idx = rollOnTable(lootTable)
         totalPulls++
+        pityCounter++
+
+        // Pity system: force a pity item after N pulls without one
+        if (pity) {
+            if (pityCounter >= pity.pulls) {
+                idx = pickPityItem(pity, tracker)
+                pityCounter = 0
+                pityGrants++
+            } else if (pity.reset && pity.indices.includes(idx)) {
+                pityCounter = 0
+            }
+        }
+
         tracker[idx].count++
         if (tracker[idx].firstSeen === null) tracker[idx].firstSeen = totalPulls
 

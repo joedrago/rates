@@ -1,4 +1,8 @@
 name: "Star Savior — Special Featured Observation"
+pity:
+    items:
+        - Asherah (Waltz of Starlight)
+    pulls: 200
 sections:
     - type: character
       rarity: SSR
