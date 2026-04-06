@@ -1,0 +1,68 @@
+name: "Star Savior — Special Featured Observation"
+sections:
+    - type: character
+      rarity: SSR
+      rate: "1.00000"
+      names:
+          - Asherah (Waltz of Starlight)
+
+    - type: character
+      rarity: SSR
+      rate: "0.10000"
+      names:
+          - Luna (Voyager Savior Party)
+          - Seira (Nightmare)
+          - Elisa (Monolith Order)
+          - Lydia (Western Liberators)
+          - Lacy (Wanderer)
+
+    - type: character
+      rarity: SSR
+      rate: "0.31250"
+      names:
+          - Bell (Candle Square)
+          - Emily (Candle Square)
+          - Roberta (Orbital Search Team)
+          - Omega (Voyager Savior Party)
+          - Charlotte (Heart of Monastir)
+          - Scarlet (Little Tyrant)
+          - Claire (Flawless Blue Rose)
+          - Frey (Noble Princess)
+
+    - type: character
+      rarity: SR
+      rate: "5.37500"
+      names:
+          - Besta (Western Liberators)
+          - Annah (NOA Town Guard)
+          - Marcille (Petra Construction)
+          - Vera (Courier Guild)
+          - Naru (Orbital Search Team)
+          - Claire (Candle Square)
+          - Scarlet (Candle Square)
+          - Clarissa (Canopus Rangers)
+
+    - type: arcana
+      rarity: R
+      rate: "2.65000"
+      names:
+          - Like an Oracle to Flames (Luna)
+          - Master Maid (Claire)
+          - Druid Out of the Forest (Dana)
+          - Rabbit with Two Faces (Lily)
+          - Sword of the West (Ceres)
+          - The Girl Chasing the Stars (Asherah)
+          - Blue-Blooded Entrepreneur (Frey)
+          - Just One Smile, Please (Smile)
+          - Grand Master of the Wild Roses (Charlotte)
+          - Girl of Kotodama (Kyra)
+          - Ambitious Newcomer (Naru)
+          - Eagle-Eyed Hunter (Clarissa)
+          - Mystic's Partner (Serpang)
+          - Serpent of the West (Lydia)
+          - Knights' Shield (Carmen)
+          - Brave Courier (Vera)
+          - Ice-Forged Blade (Lugh)
+          - Galloping Spirit of the Plains (Harley)
+          - Shield of the West (Besta)
+          - Baton of the People (Annah)

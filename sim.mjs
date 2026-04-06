@@ -19,18 +19,19 @@ End conditions (repeatable, a run stops when ANY is met):
   --pulls <count>                    Stop after <count> total pulls
 
 If no conditions given, runs until Ctrl+C (single run only).`)
-    process.exit(1)
+    process.exit(0)
 }
 
 function parseArgs(argv) {
-    if (argv.length < 1) usage()
-    const bannerPath = argv[0]
+    if (argv.length === 0) usage()
     const conditions = []
+    let bannerPath = null
     let outputPath = null
     let title = null
     let numRuns = 1
-    let i = 1
+    let i = 0
     while (i < argv.length) {
+        if (argv[i] === "--help" || argv[i] === "-h") usage()
         const flag = argv[i]
         if (flag === "--item" && i + 2 < argv.length) {
             conditions.push({ kind: "item", name: argv[i + 1], count: parseInt(argv[i + 2], 10) })
@@ -63,10 +64,20 @@ function parseArgs(argv) {
         } else if (flag === "--title" && i + 1 < argv.length) {
             title = argv[i + 1]
             i += 2
-        } else {
+        } else if (flag.startsWith("--")) {
             console.error(`Unknown flag or missing arguments: ${flag}`)
             usage()
+        } else if (!bannerPath) {
+            bannerPath = flag
+            i++
+        } else {
+            console.error(`Unexpected argument: ${flag}`)
+            usage()
         }
+    }
+    if (!bannerPath) {
+        console.error("Missing rates file path.")
+        usage()
     }
     if (numRuns > 1 && conditions.length === 0) {
         console.error("--runs requires at least one end condition so each run knows when to stop.")
@@ -650,11 +661,11 @@ function runChunk() {
             triggeredCondition = checkConditions(conditions, items, tracker, totalPulls)
             if (triggeredCondition) {
                 finishRun()
-                currentRun++
-                if (currentRun > numRuns) {
+                if (currentRun >= numRuns) {
                     finishAll()
                     return
                 }
+                currentRun++
                 resetRun()
             }
         }
