@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Acquire 4x Of Any 4x SSRs — 100,000 Runs</title>
+<style>
+    :root {
+        --bg: #1a1a2e;
+        --surface: #16213e;
+        --border: #2a2a4a;
+        --text: #e0e0e0;
+        --dim: #8888aa;
+        --ssr: #f0c040;
+        --sr: #d070d0;
+        --r: #50b8d0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        padding: 2rem;
+        line-height: 1.5;
+    }
+    h1 { color: #fff; margin-bottom: 1rem; font-size: 1.5rem; }
+    .meta { margin-bottom: 1.5rem; color: var(--dim); }
+    .meta p { margin: 0.2rem 0; }
+    .meta strong { color: var(--text); }
+    .table-wrap { overflow-x: auto; }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: var(--surface);
+        border-radius: 8px;
+        overflow: hidden;
+        font-size: 0.9rem;
+    }
+    th, td { padding: 0.5rem 0.75rem; text-align: left; border-bottom: 1px solid var(--border); }
+    th {
+        background: #0f3460;
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+        user-select: none;
+        white-space: nowrap;
+        position: sticky;
+        top: 0;
+    }
+    th:hover { background: #1a4a80; }
+    th .arrow { font-size: 0.7rem; margin-left: 0.3rem; opacity: 0.4; }
+    th.sorted .arrow { opacity: 1; }
+    td:nth-child(n+5) { text-align: right; font-variant-numeric: tabular-nums; }
+    th:nth-child(n+5) { text-align: right; }
+    tr:hover td { background: rgba(255,255,255,0.03); }
+    tr.rarity-ssr td:first-child strong { color: var(--ssr); }
+    tr.rarity-sr td:first-child strong { color: var(--sr); }
+    tr.rarity-r td:first-child strong { color: var(--r); }
+    td em { color: var(--dim); font-style: italic; }
+    td strong { font-weight: 600; }
+</style>
+</head>
+<body>
+    <h1><strong>Acquire 4x Of Any 4x SSRs</strong> — 100,000 Runs</h1>
+    <div class="meta">
+        <p><strong>Rates:</strong> Star Savior — Standard Observation</p>
+        <p><strong>Date:</strong> 2026-04-06</p>
+        <p><strong>Pulls per Run:</strong> min <strong>437</strong> / avg <strong>1,384</strong> / max <strong>2,819</strong></p>
+        <p><strong>End Conditions:</strong> 4 distinct SSR items each at 4+ copies</p>
+    </div>
+    <div class="table-wrap">
+        <table id="results">
+            <thead>
+                <tr>
+                    <th>Name <span class="arrow">▲▼</span></th>
+                    <th>Style <span class="arrow">▲▼</span></th>
+                    <th>ID <span class="arrow">▲▼</span></th>
+                    <th>Type <span class="arrow">▲▼</span></th>
+                    <th>Rarity <span class="arrow">▲▼</span></th>
+                    <th>Rate <span class="arrow">▲▼</span></th>
+                    <th>Min <span class="arrow">▲▼</span></th>
+                    <th>Avg <span class="arrow">▲▼</span></th>
+                    <th>Max <span class="arrow">▲▼</span></th>
+                    <th>First Seen (avg) <span class="arrow">▲▼</span></th>
+                    <th>Every X Pulls (avg) <span class="arrow">▲▼</span></th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr class="rarity-ssr">
+                <td><strong>Luna</strong></td>
+                <td><em>Voyager Savior Party</em></td>
+                <td data-sort="1"><em>1</em></td>
+                <td>Character</td>
+                <td>SSR</td>
+                <td data-sort="008333">0.08333%</td>
+                <td data-sort="0">0</td>
+                <td data-sort="1.15274">1.2</td>
+                <td data-sort="8">8</td>
+                <td data-sort="567">567</td>
+                <td data-sort="1200.7275795062199">1200.7</td>
+            </tr>
+            <tr class="rarity-ssr">
+                <td><strong>Seira</strong></td>
+                <td><em>Nightmare</em></td>
+                <td data-sort="2"><em>2</em></td>
+                <td>Character</td>
+                <td>SSR</td>
+                <td data-sort="008333">0.08333%</td>
+                <td data-sort="0">0</td>
+                <td data-sort="1.15269">1.2</td>
+                <td data-sort="8">8</td>
+                <td data-sort="567">567</td>
+                <td data-sort="1200.779663222549">1200.8</td>
+            </tr>
+            <tr class="rarity-ssr">
+                <td><strong>Elisa</strong></td>
+                <td><em>Monolith Order</em></td>
+                <td data-sort="3"><em>3</em></td>
+                <td>Character</td>
+                <td>SSR</td>
+                <td data-sort="008333">0.08333%</td>
+                <td data-sort="0">0</td>
+                <td data-sort="1.14854">1.1</td>
+                <td data-sort="8">8</td>
+                <td data-sort="567">567</td>
+                <td data-sort="1205.1184199070126">1205.1</td>
+            </tr>
+            <tr class="rarity-ssr">
+                <td><strong>Lydia</strong></td>
+                <td><em>Western Liberators</em></td>
+                <td data-sort="4"><em>4</em></td>
+                <td>Character</td>
+                <td>SSR</td>
+                <td data-sort="008333">0.08333%</td>
+                <td data-sort="0">0</td>
+                <td data-sort="1.15427">1.2</td>
+                <td data-sort="8">8</td>
+                <td data-sort="568">568</td>
+                <td data-sort="1199.1359993762292">1199.1</td>
+            </tr>
+            <tr class="rarity-ssr">
+                <td><strong>Lacy</strong></td>
+                <td><em>Wanderer</em></td>
+                <td data-sort="5"><em>5</em></td>
+                <td>Character</td>
+                <td>SSR</td>
+                <td data-sort="008333">0.08333%</td>
+                <td data-sort="0">0</td>
+                <td data-sort="1.15218">1.2</td>
+                <td data-sort="8">8</td>
+                <td data-sort="568">568</td>
+                <td data-sort="1201.311175337187">1201.3</td>
+            </tr>
+            <tr class="rarity-ssr">
+                <td><strong>Asherah</strong></td>
+                <td><em>Waltz of Starlight</em></td>
+                <td data-sort="6"><em>6</em></td>
+                <td>Character</td>
+                <td>SSR</td>
+                <td data-sort="008333">0.08333%</td>
+                <td data-sort="0">0</td>
+                <td data-sort="1.1577">1.2</td>
+                <td data-sort="7">7</td>
+                <td data-sort="565">565</td>
+                <td data-sort="1195.5832339984452">1195.6</td>
+            </tr>
+            <tr class="rarity-ssr">
+                <td><strong>Asherah</strong></td>
+                <td><em>Voyager Savior Party</em></td>
+                <td data-sort="7"><em>7</em></td>
+                <td>Character</td>
+                <td>SSR</td>
+                <td data-sort="014583">0.14583%</td>
+                <td data-sort="0">0</td>
+                <td data-sort="2.01449">2.0</td>
+                <td data-sort="12">12</td>
+                <td data-sort="477">477</td>
+                <td data-sort="687.085421123957">687.1</td>
+            </tr>
+            <tr class="rarity-ssr">
+                <td><strong>Smile</strong></td>
+                <td><em>Voyager Savior Party</em></td>
+                <td data-sort="8"><em>8</em></td>
+                <td>Character</td>
+                <td>SSR</td>
+                <td data-sort="014583">0.14583%</td>
+                <td data-sort="0">0</td>
+                <td data-sort="2.02349">2.0</td>
+                <td data-sort="11">11</td>
+                <td data-sort="475">475</td>
+                <td data-sort="684.0294293522578">684.0</td>
+            </tr>
+            <tr class="rarity-ssr">
+                <td><strong>Bell</strong></td>
+                <td><em>Candle Square</em></td>
+                <td data-sort="9"><em>9</em></td>
+                <td>Character</td>
+                <td>SSR</td>
+                <td data-sort="014583">0.14583%</td>
+                <td data-sort="0">0</td>
+                <td data-sort="2.02185">2.0</td>
+                <td data-sort="11">11</td>
+                <td data-sort="476">476</td>
+                <td data-sort="684.5842718302545">684.6</td>
+            </tr>
+            <tr class="rarity-ssr">
+                <td><strong>Emily</strong></td>
+                <td><em>Candle Square</em></td>
+                <td data-sort="10"><em>10</em></td>
+                <td>Character</td>
+                <td>SSR</td>
+                <td data-sort="014583">0.14583%</td>
+                <td data-sort="0">0</td>
+                <td data-sort="2.01425">2.0</td>
+                <td data-sort="11">11</td>
+                <td data-sort="477">477</td>
+                <td data-sort="687.1672880724835">687.2</td>
+            </tr>
+            <tr class="rarity-ssr">
+                <td><strong>Charlotte</strong></td>
+                <td><em>Monastir Knights</em></td>
+                <td data-sort="11"><em>11</em></td>
+                <td>Character</td>
+                <td>SSR</td>
+                <td data-sort="014583">0.14583%</td>
+                <td data-sort="0">0</td>
+                <td data-sort="2.0118">2.0</td>
+                <td data-sort="11">11</td>
+                <td data-sort="476">476</td>
+                <td data-sort="688.0041306292871">688.0</td>
+            </tr>
+            <tr class="rarity-ssr">
+                <td><strong>Carmen</strong></td>
+                <td><em>Monastir Knights</em></td>
+                <td data-sort="12"><em>12</em></td>
+                <td>Character</td>
+                <td>SSR</td>
+                <td data-sort="014583">0.14583%</td>
+                <td data-sort="0">0</td>
+                <td data-sort="2.01589">2.0</td>
+                <td data-sort="11">11</td>
+                <td data-sort="476">476</td>
+                <td data-sort="686.6082524344085">686.6</td>
+            </tr>
+            <tr class="rarity-ssr">
+                <td><strong>Frey</strong></td>
+                <td><em>Monastir Knights</em></td>
+                <td data-sort="13"><em>13</em></td>
+                <td>Character</td>
+                <td>SSR</td>
+                <td data-sort="014583">0.14583%</td>
+                <td data-sort="0">0</td>
+                <td data-sort="2.02237">2.0</td>
+                <td data-sort="11">11</td>
+                <td data-sort="475">475</td>
+                <td data-sort="684.408248737867">684.4</td>
+            </tr>
+            <tr class="rarity-ssr">
+                <td><strong>Trish</strong></td>
+                <td><em>Aselus Association</em></td>
+                <td data-sort="14"><em>14</em></td>
+                <td>Character</td>
+                <td>SSR</td>
+                <td data-sort="014583">0.14583%</td>
+                <td data-sort="0">0</td>
+                <td data-sort="2.01978">2.0</td>
+                <td data-sort="11">11</td>
+                <td data-sort="476">476</td>
+                <td data-sort="685.2858776698453">685.3</td>
+            </tr>
+            <tr class="rarity-ssr">
+                <td><strong>Haydee</strong></td>
+                <td><em>Morrel Ocean Traders</em></td>
+                <td data-sort="15"><em>15</em></td>
+                <td>Character</td>
+                <td>SSR</td>
+                <td data-sort="014583">0.14583%</td>
+                <td data-sort="0">0</td>
+                <td data-sort="2.01549">2.0</td>
+                <td data-sort="13">13</td>
+                <td data-sort="475">475</td>
+                <td data-sort="686.7445187026481">686.7</td>
+            </tr>
+            <tr class="rarity-ssr">
+                <td><strong>Serpang</strong></td>
+                <td><em>Wind Moon Sect</em></td>
+                <td data-sort="16"><em>16</em></td>
+                <td>Character</td>
+                <td>SSR</td>
+                <td data-sort="014583">0.14583%</td>
+                <td data-sort="0">0</td>
+                <td data-sort="2.01448">2.0</td>
+                <td data-sort="10">10</td>
+                <td data-sort="475">475</td>
+                <td data-sort="687.0888318573528">687.1</td>
+            </tr>
+            <tr class="rarity-ssr">
+                <td><strong>Dana</strong></td>
+                <td><em>Canopus Rangers</em></td>
+                <td data-sort="17"><em>17</em></td>
+                <td>Character</td>
+                <td>SSR</td>
+                <td data-sort="014583">0.14583%</td>
+                <td data-sort="0">0</td>
+                <td data-sort="2.02041">2.0</td>
+                <td data-sort="11">11</td>
+                <td data-sort="476">476</td>
+                <td data-sort="685.072193267703">685.1</td>
+            </tr>
+            <tr class="rarity-ssr">
+                <td><strong>Muriel</strong></td>
+                <td><em>Monolith Order</em></td>
+                <td data-sort="18"><em>18</em></td>
+                <td>Character</td>
+                <td>SSR</td>
+                <td data-sort="014583">0.14583%</td>
+                <td data-sort="0">0</td>
+                <td data-sort="2.01667">2.0</td>
+                <td data-sort="11">11</td>
+                <td data-sort="474">474</td>
+                <td data-sort="686.3426886897707">686.3</td>
+            </tr>
+            <tr class="rarity-ssr">
+                <td><strong>Lugh</strong></td>
+                <td><em>Orbital Search Team</em></td>
+                <td data-sort="19"><em>19</em></td>
+                <td>Character</td>
+                <td>SSR</td>
+                <td data-sort="014583">0.14583%</td>
+                <td data-sort="0">0</td>
+                <td data-sort="2.01621">2.0</td>
+                <td data-sort="10">10</td>
+                <td data-sort="478">478</td>
+                <td data-sort="686.4992783489815">686.5</td>
+            </tr>
+            <tr class="rarity-ssr">
+                <td><strong>Epindel</strong></td>
+                <td><em>House Orlan</em></td>
+                <td data-sort="20"><em>20</em></td>
+                <td>Character</td>
+                <td>SSR</td>
+                <td data-sort="014583">0.14583%</td>
+                <td data-sort="0">0</td>
+                <td data-sort="2.0278">2.0</td>
+                <td data-sort="11">11</td>
+                <td data-sort="472">472</td>
+                <td data-sort="682.5755547884406">682.6</td>
+            </tr>
+            <tr class="rarity-ssr">
+                <td><strong>Omega</strong></td>
+                <td><em>Voyager Savior Party</em></td>
+                <td data-sort="21"><em>21</em></td>
+                <td>Character</td>
+                <td>SSR</td>
+                <td data-sort="014583">0.14583%</td>
+                <td data-sort="0">0</td>
+                <td data-sort="2.01412">2.0</td>
+                <td data-sort="10">10</td>
+                <td data-sort="473">473</td>
+                <td data-sort="687.2116408158402">687.2</td>
+            </tr>
+            <tr class="rarity-ssr">
+                <td><strong>Charlotte</strong></td>
+                <td><em>Heart of Monastir</em></td>
+                <td data-sort="22"><em>22</em></td>
+                <td>Character</td>
+                <td>SSR</td>
+                <td data-sort="014583">0.14583%</td>
+                <td data-sort="0">0</td>
+                <td data-sort="2.0211">2.0</td>
+                <td data-sort="11">11</td>
+                <td data-sort="476">476</td>
+                <td data-sort="684.8383108208401">684.8</td>
+            </tr>
+            <tr class="rarity-ssr">
+                <td><strong>Harley</strong></td>
+                <td><em>Hell Saviors</em></td>
+                <td data-sort="23"><em>23</em></td>
+                <td>Character</td>
+                <td>SSR</td>
+                <td data-sort="014583">0.14583%</td>
+                <td data-sort="0">0</td>
+                <td data-sort="2.02131">2.0</td>
+                <td data-sort="10">10</td>
+                <td data-sort="473">473</td>
+                <td data-sort="684.767160900604">684.8</td>
+            </tr>
+            <tr class="rarity-ssr">
+                <td><strong>Petra</strong></td>
+                <td><em>Petra Construction</em></td>
+                <td data-sort="24"><em>24</em></td>
+                <td>Character</td>
+                <td>SSR</td>
+                <td data-sort="014583">0.14583%</td>
+                <td data-sort="0">0</td>
+                <td data-sort="2.02104">2.0</td>
+                <td data-sort="10">10</td>
+                <td data-sort="474">474</td>
+                <td data-sort="684.858642085263">684.9</td>
+            </tr>
+            <tr class="rarity-ssr">
+                <td><strong>Scarlet</strong></td>
+                <td><em>Little Tyrant</em></td>
+                <td data-sort="25"><em>25</em></td>
+                <td>Character</td>
+                <td>SSR</td>
+                <td data-sort="014583">0.14583%</td>
+                <td data-sort="0">0</td>
+                <td data-sort="2.02436">2.0</td>
+                <td data-sort="10">10</td>
+                <td data-sort="475">475</td>
+                <td data-sort="683.7354571321306">683.7</td>
+            </tr>
+            <tr class="rarity-ssr">
+                <td><strong>Claire</strong></td>
+                <td><em>Flawless Blue Rose</em></td>
+                <td data-sort="26"><em>26</em></td>
+                <td>Character</td>
+                <td>SSR</td>
+                <td data-sort="014583">0.14583%</td>
+                <td data-sort="0">0</td>
+                <td data-sort="2.02133">2.0</td>
+                <td data-sort="10">10</td>
+                <td data-sort="477">477</td>
+                <td data-sort="684.7603854887624">684.8</td>
+            </tr>
+            <tr class="rarity-ssr">
+                <td><strong>Tanya</strong></td>
+                <td><em>Petra Construction</em></td>
+                <td data-sort="27"><em>27</em></td>
+                <td>Character</td>
+                <td>SSR</td>
+                <td data-sort="014583">0.14583%</td>
+                <td data-sort="0">0</td>
+                <td data-sort="2.0166">2.0</td>
+                <td data-sort="12">12</td>
+                <td data-sort="474">474</td>
+                <td data-sort="686.3665129425766">686.4</td>
+            </tr>
+            <tr class="rarity-ssr">
+                <td><strong>Lily</strong></td>
+                <td><em>Lampadis</em></td>
+                <td data-sort="28"><em>28</em></td>
+                <td>Character</td>
+                <td>SSR</td>
+                <td data-sort="014583">0.14583%</td>
+                <td data-sort="0">0</td>
+                <td data-sort="2.01088">2.0</td>
+                <td data-sort="11">11</td>
+                <td data-sort="477">477</td>
+                <td data-sort="688.3189001830045">688.3</td>
+            </tr>
+            <tr class="rarity-ssr">
+                <td><strong>Kyra</strong></td>
+                <td><em>Kyra Doesn't Have Friends</em></td>
+                <td data-sort="29"><em>29</em></td>
+                <td>Character</td>
+                <td>SSR</td>
+                <td data-sort="014583">0.14583%</td>
+                <td data-sort="0">0</td>
+                <td data-sort="2.01471">2.0</td>
+                <td data-sort="10">10</td>
+                <td data-sort="475">475</td>
+                <td data-sort="687.0103935554">687.0</td>
+            </tr>
+            <tr class="rarity-ssr">
+                <td><strong>Frey</strong></td>
+                <td><em>Noble Princess</em></td>
+                <td data-sort="30"><em>30</em></td>
+                <td>Character</td>
+                <td>SSR</td>
+                <td data-sort="014583">0.14583%</td>
+                <td data-sort="0">0</td>
+                <td data-sort="2.02192">2.0</td>
+                <td data-sort="10">10</td>
+                <td data-sort="476">476</td>
+                <td data-sort="684.5605711403023">684.6</td>
+            </tr>
+            <tr class="rarity-sr">
+                <td><strong>Besta</strong></td>
+                <td><em>Western Liberators</em></td>
+                <td data-sort="31"><em>31</em></td>
+                <td>Character</td>
+                <td>SR</td>
+                <td data-sort="537500">5.37500%</td>
+                <td data-sort="20">20</td>
+                <td data-sort="74.37161">74.4</td>
+                <td data-sort="168">168</td>
+                <td data-sort="19">19</td>
+                <td data-sort="18.610955309425194">18.6</td>
+            </tr>
+            <tr class="rarity-sr">
+                <td><strong>Annah</strong></td>
+                <td><em>NOA Town Guard</em></td>
+                <td data-sort="32"><em>32</em></td>
+                <td>Character</td>
+                <td>SR</td>
+                <td data-sort="537500">5.37500%</td>
+                <td data-sort="19">19</td>
+                <td data-sort="74.38959">74.4</td>
+                <td data-sort="162">162</td>
+                <td data-sort="19">19</td>
+                <td data-sort="18.60645703249608">18.6</td>
+            </tr>
+            <tr class="rarity-sr">
+                <td><strong>Marcille</strong></td>
+                <td><em>Petra Construction</em></td>
+                <td data-sort="33"><em>33</em></td>
+                <td>Character</td>
+                <td>SR</td>
+                <td data-sort="537500">5.37500%</td>
+                <td data-sort="16">16</td>
+                <td data-sort="74.36407">74.4</td>
+                <td data-sort="164">164</td>
+                <td data-sort="19">19</td>
+                <td data-sort="18.61284233098054">18.6</td>
+            </tr>
+            <tr class="rarity-sr">
+                <td><strong>Vera</strong></td>
+                <td><em>Courier Guild</em></td>
+                <td data-sort="34"><em>34</em></td>
+                <td>Character</td>
+                <td>SR</td>
+                <td data-sort="537500">5.37500%</td>
+                <td data-sort="21">21</td>
+                <td data-sort="74.40671">74.4</td>
+                <td data-sort="149">149</td>
+                <td data-sort="19">19</td>
+                <td data-sort="18.602175932788857">18.6</td>
+            </tr>
+            <tr class="rarity-sr">
+                <td><strong>Naru</strong></td>
+                <td><em>Orbital Search Team</em></td>
+                <td data-sort="35"><em>35</em></td>
+                <td>Character</td>
+                <td>SR</td>
+                <td data-sort="537500">5.37500%</td>
+                <td data-sort="20">20</td>
+                <td data-sort="74.43912">74.4</td>
+                <td data-sort="167">167</td>
+                <td data-sort="19">19</td>
+                <td data-sort="18.59407674351873">18.6</td>
+            </tr>
+            <tr class="rarity-sr">
+                <td><strong>Claire</strong></td>
+                <td><em>Candle Square</em></td>
+                <td data-sort="36"><em>36</em></td>
+                <td>Character</td>
+                <td>SR</td>
+                <td data-sort="537500">5.37500%</td>
+                <td data-sort="20">20</td>
+                <td data-sort="74.42762">74.4</td>
+                <td data-sort="159">159</td>
+                <td data-sort="19">19</td>
+                <td data-sort="18.59694976139234">18.6</td>
+            </tr>
+            <tr class="rarity-sr">
+                <td><strong>Scarlet</strong></td>
+                <td><em>Candle Square</em></td>
+                <td data-sort="37"><em>37</em></td>
+                <td>Character</td>
+                <td>SR</td>
+                <td data-sort="537500">5.37500%</td>
+                <td data-sort="20">20</td>
+                <td data-sort="74.42824">74.4</td>
+                <td data-sort="171">171</td>
+                <td data-sort="19">19</td>
+                <td data-sort="18.596794845612365">18.6</td>
+            </tr>
+            <tr class="rarity-sr">
+                <td><strong>Clarissa</strong></td>
+                <td><em>Canopus Rangers</em></td>
+                <td data-sort="38"><em>38</em></td>
+                <td>Character</td>
+                <td>SR</td>
+                <td data-sort="537500">5.37500%</td>
+                <td data-sort="16">16</td>
+                <td data-sort="74.35725">74.4</td>
+                <td data-sort="167">167</td>
+                <td data-sort="19">19</td>
+                <td data-sort="18.614549489121774">18.6</td>
+            </tr>
+            <tr class="rarity-r">
+                <td><strong>Like an Oracle to Flames</strong></td>
+                <td><em>Luna</em></td>
+                <td data-sort="39"><em>39</em></td>
+                <td>Arcana</td>
+                <td>R</td>
+                <td data-sort="265000">2.65000%</td>
+                <td data-sort="7">7</td>
+                <td data-sort="36.68019">36.7</td>
+                <td data-sort="85">85</td>
+                <td data-sort="38">38</td>
+                <td data-sort="37.734992921247134">37.7</td>
+            </tr>
+            <tr class="rarity-r">
+                <td><strong>Master Maid</strong></td>
+                <td><em>Claire</em></td>
+                <td data-sort="40"><em>40</em></td>
+                <td>Arcana</td>
+                <td>R</td>
+                <td data-sort="265000">2.65000%</td>
+                <td data-sort="5">5</td>
+                <td data-sort="36.6745">36.7</td>
+                <td data-sort="83">83</td>
+                <td data-sort="38">38</td>
+                <td data-sort="37.74084745531636">37.7</td>
+            </tr>
+            <tr class="rarity-r">
+                <td><strong>Druid Out of the Forest</strong></td>
+                <td><em>Dana</em></td>
+                <td data-sort="41"><em>41</em></td>
+                <td>Arcana</td>
+                <td>R</td>
+                <td data-sort="265000">2.65000%</td>
+                <td data-sort="7">7</td>
+                <td data-sort="36.64363">36.6</td>
+                <td data-sort="83">83</td>
+                <td data-sort="38">38</td>
+                <td data-sort="37.77264179340311">37.8</td>
+            </tr>
+            <tr class="rarity-r">
+                <td><strong>Rabbit with Two Faces</strong></td>
+                <td><em>Lily</em></td>
+                <td data-sort="42"><em>42</em></td>
+                <td>Arcana</td>
+                <td>R</td>
+                <td data-sort="265000">2.65000%</td>
+                <td data-sort="8">8</td>
+                <td data-sort="36.66477">36.7</td>
+                <td data-sort="87">87</td>
+                <td data-sort="38">38</td>
+                <td data-sort="37.7508630219145">37.8</td>
+            </tr>
+            <tr class="rarity-r">
+                <td><strong>Sword of the West</strong></td>
+                <td><em>Ceres</em></td>
+                <td data-sort="43"><em>43</em></td>
+                <td>Arcana</td>
+                <td>R</td>
+                <td data-sort="265000">2.65000%</td>
+                <td data-sort="6">6</td>
+                <td data-sort="36.69839">36.7</td>
+                <td data-sort="84">84</td>
+                <td data-sort="38">38</td>
+                <td data-sort="37.71627883403059">37.7</td>
+            </tr>
+            <tr class="rarity-r">
+                <td><strong>The Girl Chasing the Stars</strong></td>
+                <td><em>Asherah</em></td>
+                <td data-sort="44"><em>44</em></td>
+                <td>Arcana</td>
+                <td>R</td>
+                <td data-sort="265000">2.65000%</td>
+                <td data-sort="8">8</td>
+                <td data-sort="36.68006">36.7</td>
+                <td data-sort="87">87</td>
+                <td data-sort="38">38</td>
+                <td data-sort="37.73512666009816">37.7</td>
+            </tr>
+            <tr class="rarity-r">
+                <td><strong>Blue-Blooded Entrepreneur</strong></td>
+                <td><em>Frey</em></td>
+                <td data-sort="45"><em>45</em></td>
+                <td>Arcana</td>
+                <td>R</td>
+                <td data-sort="265000">2.65000%</td>
+                <td data-sort="7">7</td>
+                <td data-sort="36.6566">36.7</td>
+                <td data-sort="83">83</td>
+                <td data-sort="38">38</td>
+                <td data-sort="37.759276910569994">37.8</td>
+            </tr>
+            <tr class="rarity-r">
+                <td><strong>Just One Smile, Please</strong></td>
+                <td><em>Smile</em></td>
+                <td data-sort="46"><em>46</em></td>
+                <td>Arcana</td>
+                <td>R</td>
+                <td data-sort="265000">2.65000%</td>
+                <td data-sort="6">6</td>
+                <td data-sort="36.67224">36.7</td>
+                <td data-sort="93">93</td>
+                <td data-sort="38">38</td>
+                <td data-sort="37.743173310384094">37.7</td>
+            </tr>
+            <tr class="rarity-r">
+                <td><strong>Grand Master of the Wild Roses</strong></td>
+                <td><em>Charlotte</em></td>
+                <td data-sort="47"><em>47</em></td>
+                <td>Arcana</td>
+                <td>R</td>
+                <td data-sort="265000">2.65000%</td>
+                <td data-sort="6">6</td>
+                <td data-sort="36.69678">36.7</td>
+                <td data-sort="83">83</td>
+                <td data-sort="38">38</td>
+                <td data-sort="37.71793356256326">37.7</td>
+            </tr>
+            <tr class="rarity-r">
+                <td><strong>Girl of Kotodama</strong></td>
+                <td><em>Kyra</em></td>
+                <td data-sort="48"><em>48</em></td>
+                <td>Arcana</td>
+                <td>R</td>
+                <td data-sort="265000">2.65000%</td>
+                <td data-sort="7">7</td>
+                <td data-sort="36.67712">36.7</td>
+                <td data-sort="86">86</td>
+                <td data-sort="38">38</td>
+                <td data-sort="37.73815146881761">37.7</td>
+            </tr>
+            <tr class="rarity-r">
+                <td><strong>Ambitious Newcomer</strong></td>
+                <td><em>Naru</em></td>
+                <td data-sort="49"><em>49</em></td>
+                <td>Arcana</td>
+                <td>R</td>
+                <td data-sort="265000">2.65000%</td>
+                <td data-sort="3">3</td>
+                <td data-sort="36.69399">36.7</td>
+                <td data-sort="88">88</td>
+                <td data-sort="38">38</td>
+                <td data-sort="37.72080141734382">37.7</td>
+            </tr>
+            <tr class="rarity-r">
+                <td><strong>Eagle-Eyed Hunter</strong></td>
+                <td><em>Clarissa</em></td>
+                <td data-sort="50"><em>50</em></td>
+                <td>Arcana</td>
+                <td>R</td>
+                <td data-sort="265000">2.65000%</td>
+                <td data-sort="6">6</td>
+                <td data-sort="36.69668">36.7</td>
+                <td data-sort="86">86</td>
+                <td data-sort="38">38</td>
+                <td data-sort="37.718036345522265">37.7</td>
+            </tr>
+            <tr class="rarity-r">
+                <td><strong>Mystic's Partner</strong></td>
+                <td><em>Serpang</em></td>
+                <td data-sort="51"><em>51</em></td>
+                <td>Arcana</td>
+                <td>R</td>
+                <td data-sort="265000">2.65000%</td>
+                <td data-sort="7">7</td>
+                <td data-sort="36.69302">36.7</td>
+                <td data-sort="83">83</td>
+                <td data-sort="38">38</td>
+                <td data-sort="37.72179858730625">37.7</td>
+            </tr>
+            <tr class="rarity-r">
+                <td><strong>Serpent of the West</strong></td>
+                <td><em>Lydia</em></td>
+                <td data-sort="52"><em>52</em></td>
+                <td>Arcana</td>
+                <td>R</td>
+                <td data-sort="265000">2.65000%</td>
+                <td data-sort="7">7</td>
+                <td data-sort="36.67932">36.7</td>
+                <td data-sort="83">83</td>
+                <td data-sort="38">38</td>
+                <td data-sort="37.73588796084552">37.7</td>
+            </tr>
+            <tr class="rarity-r">
+                <td><strong>Knights' Shield</strong></td>
+                <td><em>Carmen</em></td>
+                <td data-sort="53"><em>53</em></td>
+                <td>Arcana</td>
+                <td>R</td>
+                <td data-sort="265000">2.65000%</td>
+                <td data-sort="7">7</td>
+                <td data-sort="36.67202">36.7</td>
+                <td data-sort="89">89</td>
+                <td data-sort="38">38</td>
+                <td data-sort="37.74339973636576">37.7</td>
+            </tr>
+            <tr class="rarity-r">
+                <td><strong>Brave Courier</strong></td>
+                <td><em>Vera</em></td>
+                <td data-sort="54"><em>54</em></td>
+                <td>Arcana</td>
+                <td>R</td>
+                <td data-sort="265000">2.65000%</td>
+                <td data-sort="5">5</td>
+                <td data-sort="36.67257">36.7</td>
+                <td data-sort="85">85</td>
+                <td data-sort="38">38</td>
+                <td data-sort="37.742833676505356">37.7</td>
+            </tr>
+            <tr class="rarity-r">
+                <td><strong>Ice-Forged Blade</strong></td>
+                <td><em>Lugh</em></td>
+                <td data-sort="55"><em>55</em></td>
+                <td>Arcana</td>
+                <td>R</td>
+                <td data-sort="265000">2.65000%</td>
+                <td data-sort="5">5</td>
+                <td data-sort="36.69176">36.7</td>
+                <td data-sort="93">93</td>
+                <td data-sort="38">38</td>
+                <td data-sort="37.72309395897062">37.7</td>
+            </tr>
+            <tr class="rarity-r">
+                <td><strong>Galloping Spirit of the Plains</strong></td>
+                <td><em>Harley</em></td>
+                <td data-sort="56"><em>56</em></td>
+                <td>Arcana</td>
+                <td>R</td>
+                <td data-sort="265000">2.65000%</td>
+                <td data-sort="6">6</td>
+                <td data-sort="36.68877">36.7</td>
+                <td data-sort="91">91</td>
+                <td data-sort="38">38</td>
+                <td data-sort="37.72616825257429">37.7</td>
+            </tr>
+            <tr class="rarity-r">
+                <td><strong>Shield of the West</strong></td>
+                <td><em>Besta</em></td>
+                <td data-sort="57"><em>57</em></td>
+                <td>Arcana</td>
+                <td>R</td>
+                <td data-sort="265000">2.65000%</td>
+                <td data-sort="7">7</td>
+                <td data-sort="36.67851">36.7</td>
+                <td data-sort="85">85</td>
+                <td data-sort="38">38</td>
+                <td data-sort="37.73672131174358">37.7</td>
+            </tr>
+            <tr class="rarity-r">
+                <td><strong>Baton of the People</strong></td>
+                <td><em>Annah</em></td>
+                <td data-sort="58"><em>58</em></td>
+                <td>Arcana</td>
+                <td>R</td>
+                <td data-sort="265000">2.65000%</td>
+                <td data-sort="6">6</td>
+                <td data-sort="36.67111">36.7</td>
+                <td data-sort="85">85</td>
+                <td data-sort="38">38</td>
+                <td data-sort="37.74433634542287">37.7</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+<script>
+document.querySelectorAll("#results thead th").forEach((th, colIdx) => {
+    let asc = true
+    th.addEventListener("click", () => {
+        const tbody = document.querySelector("#results tbody")
+        const rows = Array.from(tbody.querySelectorAll("tr"))
+        document.querySelectorAll("#results th").forEach(h => h.classList.remove("sorted"))
+        th.classList.add("sorted")
+        rows.sort((a, b) => {
+            const cellA = a.children[colIdx]
+            const cellB = b.children[colIdx]
+            const va = cellA.dataset.sort !== undefined ? parseFloat(cellA.dataset.sort) : cellA.textContent.trim().toLowerCase()
+            const vb = cellB.dataset.sort !== undefined ? parseFloat(cellB.dataset.sort) : cellB.textContent.trim().toLowerCase()
+            if (typeof va === "number" && typeof vb === "number") return asc ? va - vb : vb - va
+            if (va < vb) return asc ? -1 : 1
+            if (va > vb) return asc ? 1 : -1
+            return 0
+        })
+        rows.forEach(r => tbody.appendChild(r))
+        th.querySelector(".arrow").textContent = asc ? "▲" : "▼"
+        asc = !asc
+    })
+})
+</script>
+</body>
+</html>

@@ -26,23 +26,35 @@ No floating-point arithmetic touches the rate math. What you type from the game 
 
 ## Rate File Format
 
-JSON files live in `rates/`. Schema:
+Rate files live in `rates/` as YAML (`.yaml`/`.yml`) or JSON. YAML is preferred for hand-editing.
 
-```json
-{
-    "name": "Banner Name",
-    "items": [
-        { "name": "Luna", "type": "character", "rarity": "SSR", "rate": "0.08333" },
-        { "name": "Common Sword", "type": "equipment", "rarity": "R", "rate": "12.0000" }
-    ]
-}
+```yaml
+name: "Banner Name"
+sections:
+  - type: character
+    rarity: SSR
+    rate: "0.08333"
+    names:
+      - Luna
+      - Seira
+      - Elisa
+
+  - type: equipment
+    rarity: R
+    rate: "12.0000"
+    names:
+      - Common Sword
+      - Iron Shield
 ```
 
 - **name**: Display name for the banner
-- **items[].name**: Item/character name (string)
-- **items[].type**: Category like "character", "equipment", etc. (string)
-- **items[].rarity**: Rarity tier like "SSR", "SR", "R" (string)
-- **items[].rate**: Drop rate percentage as shown in-game (string, e.g. `"0.08333"` means 0.08333%)
+- **sections[]**: Groups of items sharing the same type, rarity, and rate
+- **sections[].type**: Category like "character", "equipment", etc. (string)
+- **sections[].rarity**: Rarity tier like "SSR", "SR", "R" (string)
+- **sections[].rate**: Drop rate percentage as shown in-game (string, e.g. `"0.08333"` means 0.08333%)
+- **sections[].names**: Array of item/character names (strings)
+
+The legacy flat JSON `items` array format is also still supported.
 
 Rates don't need to sum to exactly 100% — the simulator uses proportional weighting from whatever the sum is.
 
@@ -70,19 +82,19 @@ If no conditions are given, runs until Ctrl+C.
 
 ```bash
 # Run 1 million pulls
-node sim.mjs rates/starsavior_standard.json --runs 1000000
+node sim.mjs rates/starsavior_standard.yaml --runs 1000000
 
 # Stop when Claire is pulled 5 times
-node sim.mjs rates/starsavior_standard.json --item "Claire" 5
+node sim.mjs rates/starsavior_standard.yaml --item "Claire" 5
 
 # Multiple conditions — stops on whichever hits first
-node sim.mjs rates/starsavior_standard.json --item "Claire" 5 --item "Lacy" 3 --rarity SSR 50
+node sim.mjs rates/starsavior_standard.yaml --item "Claire" 5 --item "Lacy" 3 --rarity SSR 50
 
 # Stop when 4 different SSR characters each have 4+ copies
-node sim.mjs rates/starsavior_standard.json --rarity-spread SSR 4 4
+node sim.mjs rates/starsavior_standard.yaml --rarity-spread SSR 4 4
 
 # Run indefinitely, Ctrl+C to stop and write results
-node sim.mjs rates/starsavior_standard.json
+node sim.mjs rates/starsavior_standard.yaml
 ```
 
 ## Output
